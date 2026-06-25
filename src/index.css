@@ -2893,3 +2893,60 @@ textarea.form-input {
     font-size: 0.9rem;
   }
 }
+
+/* ── CART DELIVERY TOGGLE Y FORMULARIO ── */
+.delivery-toggle-wrap {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dt-btn {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dt-btn:hover {
+  background: rgba(201, 162, 39, 0.1);
+}
+
+.dt-btn.active {
+  background: rgba(201, 162, 39, 0.2);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.2);
+}
+
+.cart-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-form .form-input, .cart-form .form-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.cart-form .form-input:focus, .cart-form .form-textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.2);
+}

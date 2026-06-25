@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './supabase';
+import { TrackingView } from './components/TrackingView';
 
 interface Portion {
   label: string;
@@ -231,6 +232,9 @@ function App() {
   const [authLoading, setAuthLoading] = useState(false);
   const [authError, setAuthError] = useState('');
 
+  // Tracking State
+  const [trackingToken, setTrackingToken] = useState<string | null>(null);
+
   // Dish Editor Modal State
   const [isDishModalOpen, setIsDishModalOpen] = useState(false);
   const [editingDish, setEditingDish] = useState<any | null>(null);
@@ -295,6 +299,13 @@ function App() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+
+    // Check tracking route
+    const path = window.location.pathname;
+    if (path.startsWith('/tracking/')) {
+      const token = path.replace('/tracking/', '');
+      setTrackingToken(token);
+    }
 
     // Hash change handler to navigate to admin console (#admin)
     const handleHash = () => {
@@ -661,6 +672,11 @@ function App() {
       return dbPlato ? dbPlato.visible !== false : true;
     })
   }));
+
+  // Render Tracking View
+  if (trackingToken) {
+    return <TrackingView token={trackingToken} />;
+  }
 
   // Render Admin Console Interface
   if (isAdminActive) {
